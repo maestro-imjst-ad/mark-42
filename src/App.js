@@ -1,24 +1,27 @@
-import logo from './logo.svg';
 import './App.css';
-
-function App() {
+import SignIn from './SignIn/SignIn';
+import SignUp from './SignUp/SignUp';
+import { Routes as Switcher, Route } from 'react-router-dom';
+import Home from './Home';
+import Box from '@mui/material/Box';
+const App = () => {
+  const appName = 'Marker'
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Switcher>
+      <Route path='/sign-in' element={<SignIn appName={appName} />} />
+      <Route path='/sign-up' element={<SignUp appName={appName} />} />
+      <Route path='/' element={
+
+
+        <Home appName={appName} />
+
+
+
+
+      } />
+    </Switcher>
+
+
   );
 }
 
