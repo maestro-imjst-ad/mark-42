@@ -52,7 +52,7 @@ const Home = ({ appName }) => {
 
                             fontSize: {
                                 xs: 35,
-                                md: 40
+                                md: 45
                             },
                             textAlign: {
                                 xs: 'center',
@@ -66,7 +66,7 @@ const Home = ({ appName }) => {
 
                         }}
                     >
-                        Seamless connection with your College
+                        Seamless connection with your College / School
                     </Typography>
                     <Typography
                         component='h1'
