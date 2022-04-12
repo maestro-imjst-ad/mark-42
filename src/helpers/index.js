@@ -7,5 +7,8 @@ const getUserDetails = (data) => {
     return userData
 }
 
+const signUpNewUser = (data) => {
+    // axios.post('/sign-up',{data})
+}
 
 export { getUserDetails }
