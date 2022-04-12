@@ -3,11 +3,14 @@ import SignIn from './SignIn/SignIn';
 import SignUp from './SignUp/SignUp';
 import { Routes as Switcher, Route } from 'react-router-dom';
 import Home from './Home';
-import Box from '@mui/material/Box';
+import { useSelector } from 'react-redux';
 import AddProfileInfo from './AddProfileInfo';
-import Check from './Check'
+
 const App = () => {
   const appName = 'Marker'
+
+  const userData = useSelector(state => state)
+  console.log(userData)
   return (
     // <Check />
     <Switcher>

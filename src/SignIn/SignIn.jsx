@@ -12,7 +12,10 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-
+import { getUserDetails } from '../helpers';
+import { useDispatch } from 'react-redux';
+import { signInAction } from '../actions'
+import { useNavigate } from 'react-router-dom';
 function Copyright(props) {
     return (
         <Typography variant="body2" color="text.secondary" align="center" {...props}>
@@ -29,14 +32,25 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function SignIn() {
+    const [email, setEmail] = React.useState('')
+    const [password, setPassword] = React.useState('')
+    const dispatcher = useDispatch();
+    const navigate = useNavigate();
     const handleSubmit = (event) => {
         event.preventDefault();
-        const data = new FormData(event.currentTarget);
-        console.log({
-            email: data.get('email'),
-            password: data.get('password'),
-        });
+        const userData = getUserDetails({ email: email, password: password })
+        dispatcher(signInAction(userData))
+        navigate('/')
     };
+
+    const handleEmailChange = (e) => {
+        e.preventDefault()
+        setEmail(e.target.value)
+    }
+    const handlePasswordChange = (e) => {
+        e.preventDefault()
+        setPassword(e.target.value)
+    }
 
     return (
         <ThemeProvider theme={theme}>
@@ -66,6 +80,8 @@ export default function SignIn() {
                             name="email"
                             autoComplete="email"
                             autoFocus
+                            value={email}
+                            onChange={handleEmailChange}
                         />
                         <TextField
                             margin="normal"
@@ -76,6 +92,8 @@ export default function SignIn() {
                             type="password"
                             id="password"
                             autoComplete="current-password"
+                            value={password}
+                            onChange={handlePasswordChange}
                         />
                         <FormControlLabel
                             control={<Checkbox value="remember" color="primary" />}
