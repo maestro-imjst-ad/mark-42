@@ -21,8 +21,6 @@ const App = () => {
         <Home appName={appName} />
       } />
     </Switcher>
-
-
   );
 }
 
