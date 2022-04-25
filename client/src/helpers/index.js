@@ -1,13 +1,12 @@
 import axios from "axios"
 
-const getUserDetails = (data) => {
-    // const userData = await axios.post('/sign-in', data);
-    const userData = { email: "imajst@gmail.com", name: "howlaj",username:"jbkdnd" }
+const getUserDetails = async (data) => {
+    const userData = await axios.post('http://localhost:8000/api/login-user', data);
     return userData
 }
 
-const signUpNewUser = (data) => {
-    // axios.post('/sign-up',{data})
+const signUpNewUser = async (data) => {
+    await axios.post('http://localhost:8000/api/add-user', { data })
 }
 
-export { getUserDetails }
+export { getUserDetails, signUpNewUser }

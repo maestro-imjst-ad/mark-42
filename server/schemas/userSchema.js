@@ -19,15 +19,12 @@ const userSchema = new mongoose.Schema({
   },
   isTeacher: {
     type: Boolean,
-    required: true,
   },
   phoneNumber: {
     type: String,
-    required: true,
   },
   usn: {
     type: String,
-    required: true,
   },
   authToken: {
     type: String,
