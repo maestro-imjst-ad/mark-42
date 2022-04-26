@@ -2,7 +2,8 @@ import axios from "axios"
 
 const getUserDetails = async (data) => {
     const userData = await axios.post('http://localhost:8000/api/login-user', data);
-    return userData
+    console.log(userData)
+    return userData.data
 }
 
 const signUpNewUser = async (data) => {
