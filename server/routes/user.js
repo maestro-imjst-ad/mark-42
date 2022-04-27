@@ -6,19 +6,20 @@ const salt = 10
 const crypto = require('crypto')
 
 router.get('/', (req, res) => {
-    res.cookie('hello','hello')
+    res.cookie('hello', 'hello')
     res.send("Helloo love!")
 })
 
 router.post('/add-user', async (req, res) => {
-    const userData = req.body.data
+    const userData = req.body
     const addingData = {
         email: userData.email,
         password: userData.password,
         firstName: userData.firstName,
         lastName: userData.lastName,
-        authToken:'',
+        authToken: '',
     }
+    console.log(userData)
     const email = userData.email
     const password = userData.password
     const found = await userModel.find({ email: email }).exec()
@@ -32,11 +33,9 @@ router.post('/add-user', async (req, res) => {
             addingData.password = hashedPwd
             const token = crypto.randomBytes(32).toString('hex')
             addingData.authToken = token
-            res.cookie('token', token)
             const newUser = new userModel(addingData)
             await newUser.save()
-            
-            res.send(newUser)
+            res.send(token)
             console.log('Registration Successful!')
         }
         catch (err) {
