@@ -6,7 +6,8 @@ const salt = 10
 const crypto = require('crypto')
 
 router.get('/', (req, res) => {
-    res.send("Helloo love !")
+    res.cookie('hello','hello')
+    res.send("Helloo love!")
 })
 
 router.post('/add-user', async (req, res) => {
@@ -28,13 +29,13 @@ router.post('/add-user', async (req, res) => {
     else {
         try {
             const hashedPwd = await bcrypt.hash(password, salt);
-            const token = crypto.randomBytes(32).toString('hex')
             addingData.password = hashedPwd
+            const token = crypto.randomBytes(32).toString('hex')
             addingData.authToken = token
-            
+            res.cookie('token', token)
             const newUser = new userModel(addingData)
             await newUser.save()
-            res.cookie('token', token)
+            
             res.send(newUser)
             console.log('Registration Successful!')
         }
@@ -46,16 +47,17 @@ router.post('/add-user', async (req, res) => {
 
 router.post('/login-user', async (req, res) => {
     const userData = req.body
-    const name = userData.name
     const password = userData.password
     const user = await userModel.findOne({ email: userData.email }).exec()
-    if (user && await bcrypt.compare(password, user.password)) {
-        // const token = crypto.randomBytes(32).toString('hex')
+    if (user && bcrypt.compare(password, user.password)) {
+        token = user.authToken
+        // console.log(token)
+        res.clearCookie('hello')
+        res.cookie('token', token)
+        // console.log(token)
         user.password = ""
         user.authToken = ""
-        console.log(user)
         res.send(user)
-        // res.send('logged in successfully!')
     }
     else {
         console.log('invalid email and password')

@@ -1,7 +1,8 @@
 import axios from "axios"
 
 const getUserDetails = async (data) => {
-    const userData = await axios.post('http://localhost:8000/api/login-user', data);
+    // axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
+    const userData = await axios.post('http://localhost:8000/api/login-user', data, {credentials: 'include'});
     console.log(userData)
     return userData.data
 }
