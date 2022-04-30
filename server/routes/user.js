@@ -51,11 +51,8 @@ router.post('/login-user', async (req, res) => {
     if (user && bcrypt.compare(password, user.password)) {
         token = user.authToken
         // console.log(token)
-        res.clearCookie('hello')
-        res.cookie('token', token)
         // console.log(token)
         user.password = ""
-        user.authToken = ""
         res.send(user)
     }
     else {
@@ -63,5 +60,23 @@ router.post('/login-user', async (req, res) => {
         res.send('invalid email and password')
     }
 })
+
+router.get('/authenticate', authenticate, async (req, res) => {
+    res.json({ auth: true, msg: 'U are Authenticated' })
+})
+
+async function authenticate(req, res, next) {
+    const token = req.header('x-access-token')
+    console.log(token)
+    try {
+        user = await userModel.findOne({ authToken: token }).exec()
+        console.log("The user is " + user)
+        next()
+    }
+    catch {
+        console.log('token dosent exists')
+        res.send('token dosent exists')
+    }
+}
 
 module.exports = router;
