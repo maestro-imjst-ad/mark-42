@@ -12,8 +12,8 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { signUpNewUser } from '../helpers/index'
-
+import { isUserAuthenticated, signUpNewUser } from '../helpers/index'
+import { useNavigate } from 'react-router-dom';
 function Copyright(props) {
     return (
         <Typography variant="body2" color="text.secondary" align="center" {...props}>
@@ -34,14 +34,14 @@ export default function SignUp({ appName }) {
     const [password, setPassword] = React.useState('');
     const [firstName, setFirstName] = React.useState('');
     const [lastName, setLastName] = React.useState('');
-
+    const navigate = useNavigate();
     const handleSubmitButton = (event) => {
         event.preventDefault();
         const signUpData = {
             email: email,
             password: password,
             firstName: firstName,
-            lastName: lastName
+            lastName: lastName,
         }
         signUpNewUser(signUpData)
             .then(() => {
@@ -50,6 +50,8 @@ export default function SignUp({ appName }) {
             .catch(() => {
                 alert('Sign-Up unsuccessful Please try again !!')
             })
+        console.log("just above")
+        
     };
 
     return (
