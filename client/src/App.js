@@ -6,6 +6,7 @@ import Home from './Home';
 import { useSelector } from 'react-redux';
 import AddProfileInfo from './AddProfileInfo';
 import Private from './Private';
+import Quiz from './Quiz/Quiz';
 const App = () => {
   const appName = 'Marker'
   const userData = useSelector(state => state)
@@ -13,6 +14,7 @@ const App = () => {
   return (
     // <Check />
     <Switcher>
+      <Route path='/quiz' element={<Quiz />} />
       <Route path='/private' element={<Private />} />
       <Route path='/add-profile-info' element={<AddProfileInfo />} />
       <Route path='/sign-in' element={<SignIn appName={appName} />} />

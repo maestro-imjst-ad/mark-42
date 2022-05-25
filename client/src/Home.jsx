@@ -6,8 +6,6 @@ import Box from '@mui/material/Box';
 import StudentsImage from "./images/group-students.png"
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
-import { textAlign } from '@mui/system';
-import { Link } from 'react-router-dom';
 const Home = ({ appName }) => {
     return (
 
