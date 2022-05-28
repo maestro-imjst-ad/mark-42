@@ -18,6 +18,7 @@ router.post('/add-user', async (req, res) => {
         firstName: userData.firstName,
         lastName: userData.lastName,
         authToken: '',
+		subjects: userData.subjects
     }
     console.log(userData)
     const email = userData.email
@@ -60,6 +61,24 @@ router.post('/login-user', async (req, res) => {
         res.send('invalid email and password')
     }
 })
+
+// router.post('/academic_test', async (req,res) =>{
+// 	const academicDetails = req.body
+
+// 	const addingData = {
+// 		email: academicDetails.email,
+// 		password: academicDetails.password,
+// 		firstName: academicDetails.firstName,
+// 		lastName: academicDetails.lastName,
+// 		subjects: academicDetails.subjects,
+// 	}
+
+// 	const newUser = userModel(addingData)
+// 	await newUser.save()
+// 	res.send(newUser)
+
+
+// })
 
 router.get('/authenticate', authenticate, async (req, res) => {
     res.json({ auth: true, msg: 'U are Authenticated' })
