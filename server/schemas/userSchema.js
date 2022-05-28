@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const { Schema } = require('mongoose')
 
 const userSchema = new mongoose.Schema({
   firstName: {
@@ -19,6 +20,7 @@ const userSchema = new mongoose.Schema({
   },
   isTeacher: {
     type: Boolean,
+    default: false
   },
   phoneNumber: {
     type: String,
@@ -28,6 +30,9 @@ const userSchema = new mongoose.Schema({
   },
   authToken: {
     type: String,
+  },
+  academicDetails: {
+    type: Schema.Types.ObjectId, ref: 'academics'
   }
 })
 
