@@ -6,7 +6,6 @@ const salt = 10
 const crypto = require('crypto')
 
 router.get('/', (req, res) => {
-    res.cookie('hello', 'hello')
     res.send("Helloo love!")
 })
 
