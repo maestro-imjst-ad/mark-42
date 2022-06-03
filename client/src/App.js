@@ -9,13 +9,16 @@ import Private from './Private';
 import Quiz from './Quiz/Quiz';
 import Dashboard from './Dashboard/Dashboard';
 import QuizMaker from './QuizMaker/QuizMaker';
+import Course from "./Course/Course"
 const App = () => {
   const appName = 'Marker'
   const userData = useSelector(state => state)
   console.log(userData)
   return (
     <Switcher>
+
       <Route path='/make-quiz' element={<QuizMaker />} />
+      <Route path='/course' element={<Course />} />
       <Route path='/dashboard/:id' element={<Dashboard />} />
       <Route path='/quiz' element={<Quiz />} />
       <Route path='/private' element={<Private />} />
