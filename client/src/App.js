@@ -16,7 +16,6 @@ const App = () => {
   console.log(userData)
   return (
     <Switcher>
-
       <Route path='/make-quiz' element={<QuizMaker />} />
       <Route path='/course' element={<Course />} />
       <Route path='/dashboard/:id' element={<Dashboard />} />

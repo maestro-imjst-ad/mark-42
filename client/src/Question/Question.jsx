@@ -13,13 +13,13 @@ import FormLabel from '@mui/material/FormLabel';
 //         "Harry Potter",
 //     ]
 // }
-const Question = ({questionData}) => {
+const Question = ({ questionData }) => {
     return (
         <Container component={'div'} maxWidth='md'
             sx={{
                 border: '1px solid lightgrey',
                 borderRadius: '5px',
-                mt: 4,
+                mb: 2,
                 p: 2,
                 backgroundColor: 'white',
                 boxShadow: "0px 3px 15px rgba(0,0,0,0.2)"
