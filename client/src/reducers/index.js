@@ -6,6 +6,8 @@ const userDatareducer = (state, action) => {
         case "SIGN_OUT":
             state = {}
             return state
+        case "GET_DATA":
+            return state;
         default:
             return {}
     }

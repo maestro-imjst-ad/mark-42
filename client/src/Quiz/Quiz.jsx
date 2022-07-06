@@ -5,6 +5,9 @@ import { Box } from '@mui/material/';
 import { Container } from '@mui/material';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
+import { useEffect } from 'react';
+import { useState } from 'react';
+import { useParams } from 'react-router-dom';
 const quizData = {
     quizTitle: "How well do you know marvel ?",
     questions: [
@@ -32,6 +35,13 @@ const quizData = {
     ]
 }
 const Quiz = () => {
+    const [quizData, setQuizData] = useState({});
+    useEffect(() => {
+        const params = useParams();
+        const dummy = async () => {
+            const data = getQuizData(params.quizId)
+        }
+    })
     const theme = createTheme()
     const handleQuizSubmit = async () => {
         alert("Submit Done")

@@ -14,7 +14,7 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { getUserDetails } from '../helpers';
 import { useDispatch } from 'react-redux';
-import { signInAction } from '../actions'
+import { getDataAction, signInAction } from '../actions'
 import { useNavigate } from 'react-router-dom';
 import { isUserAuthenticated } from '../helpers';
 function Copyright(props) {
@@ -37,11 +37,13 @@ export default function SignIn() {
     const [password, setPassword] = React.useState('')
     const dispatcher = useDispatch();
     const navigate = useNavigate();
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
         const userData = getUserDetails({ email: email, password: password })
-        dispatcher(signInAction(userData))
-        navigate('/')
+        const state = await dispatcher(signInAction(userData))
+        const state2 = await dispatcher(getDataAction(userData));
+        console.log(state)
+        navigate('/dashboard')
     };
 
     const handleEmailChange = (e) => {

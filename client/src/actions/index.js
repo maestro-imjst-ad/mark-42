@@ -4,9 +4,14 @@ const signInAction = (data) => {
         payload: data,
     }
 }
+const getDataAction = () => {
+    return {
+        type: "GET_DATA",
+    }
+}
 const signOutAction = () => {
     return {
         type: "SIGN_OUT"
     }
 }
-export { signInAction, signOutAction }
+export { signInAction, signOutAction, getDataAction }

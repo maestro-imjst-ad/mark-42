@@ -3,22 +3,25 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
+import { getCourseDetails } from '../helpers';
+import { useParams } from 'react-router-dom';
+import { useState } from 'react';
+import { useEffect } from 'react';
 const color = "#71357C"
-const courseData =
-{
-    courseName: "Management Economics",
-    courseCode: "19HS61",
-    examsData: [
-        { examName: 'CIE 1 Test', maxMarks: 50, score: 44 },
-        { examName: 'CIE 1 Quiz', maxMarks: 10, score: 7 },
-        { examName: 'CIE 2 Test', maxMarks: 50, score: 49 },
-        { examName: 'CIE 2 Quiz', maxMarks: 10, score: 8 },
-        { examName: 'CIE 3 Test', maxMarks: 50, score: 47 },
-        { examName: 'CIE 3 Quiz', maxMarks: 10, score: 9 },
-    ]
-}
+
 
 const Course = () => {
+    const params = useParams()
+    const cid = params.id
+    const [courseData,setCourseData]=useState()
+    // useEffect(()=>{
+    //     const dummy =async()=>{
+    //         const course = await getCourseDetails(cid)
+    //         setCourseData(course);
+    //     }
+    //     dummy();
+    // },[])
+
     return (
         <Box component={'div'} className='course'
             sx={{
