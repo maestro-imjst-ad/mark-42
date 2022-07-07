@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
-const { academicModel, deptModel, courseModel } = require('../schemas/academicSchema')
-const userModel = require('../schemas/userSchema')
+const { courseModel } = require('../schemas/academicSchema')
+const { userModel } = require('../schemas/userSchema')
 
 
 router.post('/', async (req, res) => {
@@ -14,14 +14,14 @@ router.post('/', async (req, res) => {
 	// 	user.academicDetails = academics[random].id
 	// 	await user.save()
 	// }
-
 	// await user.save()
 	// res.send('result')
 	// console.log(user)
-	console.log("The token is : ", req.body)
+
 	// POPULATION CODE //
+	token = req.body.token
 	const user = await userModel
-		.findOne({ 'authToken': req.body.token })
+		.findOne({ 'authToken': token })
 		.populate({
 			path: 'academicDetails',
 			populate: {
@@ -36,6 +36,15 @@ router.post('/', async (req, res) => {
 		})
 	console.log(user)
 	res.send(user)
+})
+
+
+router.post('/get-course', async (req, res)=>{
+	const courseCode = req.body.courseCode
+	const course = await courseModel
+	.findOne({ 'courseCode': courseCode })
+	.populate('quizzes')
+	res.send(course)
 })
 
 module.exports = router;

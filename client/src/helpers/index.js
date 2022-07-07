@@ -3,7 +3,7 @@ import Cookies from 'universal-cookie';
 const cookies = new Cookies();
 
 const getCourseDetails = async (data) => {
-    // const courseDetails = await axios.post('http://localhost:8000/api/get-course', data);
+    // const courseDetails = await axios.post('http://localhost:8000/academics/get-course', data);
     const courseDetails = {
         courseName: "Management Economics",
         courseCode: "19HS61",
@@ -20,7 +20,7 @@ const getCourseDetails = async (data) => {
 }
 
 const getQuizDetails = async (data)=>{
-    // const quizDetails = await axios.post('http://localhost:8000/api/get-course', data)
+    // const quizDetails = await axios.post('http://localhost:8000/academics/get-course', data)
 }
 
 const getUserDetails = async (data) => {

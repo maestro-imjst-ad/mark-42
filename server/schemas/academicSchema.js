@@ -16,7 +16,11 @@ const courseSchema = mongoose.Schema({
   },
   courseCode: {
     type: String
-  }
+  },
+  quizzes: [{
+    type: Schema.Types.ObjectId,
+    ref: 'quiz',
+  }]
 })
 
 const academicSchema = mongoose.Schema({
