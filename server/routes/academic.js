@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const { courseModel } = require('../schemas/academicSchema')
-const { userModel } = require('../schemas/userSchema')
+const userModel = require('../schemas/userSchema')
 
 
 router.post('/', async (req, res) => {
@@ -34,16 +34,17 @@ router.post('/', async (req, res) => {
 				path: 'courses'
 			}
 		})
-	console.log(user)
+	console.log("our user is ", user)
 	res.send(user)
 })
 
 
-router.post('/get-course', async (req, res)=>{
-	const courseCode = req.body.courseCode
+router.post('/get-course', async (req, res) => {
+	const courseID = req.body.cid
+	console.log(courseID)
 	const course = await courseModel
-	.findOne({ 'courseCode': courseCode })
-	.populate('quizzes')
+		.findOne({ _id: courseID })
+		.populate('quizzes')
 	res.send(course)
 })
 

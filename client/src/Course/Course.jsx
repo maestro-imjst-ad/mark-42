@@ -7,21 +7,24 @@ import { getCourseDetails } from '../helpers';
 import { useParams } from 'react-router-dom';
 import { useState } from 'react';
 import { useEffect } from 'react';
+
 const color = "#71357C"
 
 
 const Course = () => {
-    const params = useParams()
-    const cid = params.id
-    const [courseData,setCourseData]=useState()
-    // useEffect(()=>{
-    //     const dummy =async()=>{
-    //         const course = await getCourseDetails(cid)
-    //         setCourseData(course);
-    //     }
-    //     dummy();
-    // },[])
+    const { id } = useParams();
+    const [courseData, setCourseData] = useState({})
 
+    useEffect(() => {
+        const dummyFunc = async () => {
+            const cData = await getCourseDetails("628fe97106f70bf99759c0cd");
+            setCourseData(cData.data)
+            console.log("the  cdata",cData.data)
+        }
+        dummyFunc();
+        console.log("in the useEffect")
+    }, [])
+    console.log("state data is ",courseData.quizzes)
     return (
         <Box component={'div'} className='course'
             sx={{
@@ -41,7 +44,7 @@ const Course = () => {
                 <Typography component={'h1'} align='center'
                     sx={{ fontSize: { xs: '45px', md: '80px' } }}
                 >
-                    {courseData.courseName}
+                    {courseData.courseTitle}
                 </Typography>
                 <Typography component={'h3'} align='center'
                     sx={{ fontSize: { xs: '15px', md: '30px' } }}
@@ -72,7 +75,8 @@ const Course = () => {
                 >
 
                     {
-                        courseData.examsData.map((d, i) => {
+                        courseData?.quizzes?.map((d, i) => {
+                            console.log(d)
                             return (
                                 <Grid item xs={12}>
                                     <Box component={'div'} className='course'
@@ -103,6 +107,7 @@ const Course = () => {
                             )
                         })
                     }
+                     
                 </Grid>
 
             </Box>

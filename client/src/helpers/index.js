@@ -3,19 +3,19 @@ import Cookies from 'universal-cookie';
 const cookies = new Cookies();
 
 const getCourseDetails = async (data) => {
-    // const courseDetails = await axios.post('http://localhost:8000/academics/get-course', data);
-    const courseDetails = {
-        courseName: "Management Economics",
-        courseCode: "19HS61",
-        examsData: [
-            { examName: 'CIE 1 Test', maxMarks: 50, score: 44, quizzes: [{ testId: "ghbj" }] },
-            { examName: 'CIE 1 Quiz', maxMarks: 10, score: 7, testId: "ghbj" },
-            { examName: 'CIE 2 Test', maxMarks: 50, score: 49, testId: "ghbj" },
-            { examName: 'CIE 2 Quiz', maxMarks: 10, score: 8, testId: "ghbj" },
-            { examName: 'CIE 3 Test', maxMarks: 50, score: 47, testId: "ghbj" },
-            { examName: 'CIE 3 Quiz', maxMarks: 10, score: 9, testId: "ghbj" },
-        ]
-    }
+    const courseDetails = await axios.post('http://localhost:8000/academics/get-course', {cid:data});
+    // const courseDetails = {
+    //     courseName: "Management Economics",
+    //     courseCode: "19HS61",
+    //     examsData: [
+    //         { examName: 'CIE 1 Test', maxMarks: 50, score: 44, quizzes: [{ testId: "ghbj" }] },
+    //         { examName: 'CIE 1 Quiz', maxMarks: 10, score: 7, testId: "ghbj" },
+    //         { examName: 'CIE 2 Test', maxMarks: 50, score: 49, testId: "ghbj" },
+    //         { examName: 'CIE 2 Quiz', maxMarks: 10, score: 8, testId: "ghbj" },
+    //         { examName: 'CIE 3 Test', maxMarks: 50, score: 47, testId: "ghbj" },
+    //         { examName: 'CIE 3 Quiz', maxMarks: 10, score: 9, testId: "ghbj" },
+    //     ]
+    // }
     return courseDetails
 }
 

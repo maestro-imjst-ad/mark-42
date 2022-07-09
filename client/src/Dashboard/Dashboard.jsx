@@ -15,7 +15,7 @@ const colorArray = ["#71357C", "#95D0D5", "#FD7E50", "#EAC4D5", "#023C3D", "#809
 
 const Dashboard = () => {
     const onCourseClick = (code) => {
-        navigate("/course/",{cid:code})
+        navigate("/course/", { cid: code })
     }
     const [dashData, setDashData] = useState({})
     const navigate = useNavigate()
@@ -27,8 +27,11 @@ const Dashboard = () => {
         }
         dummyFunc();
     }, [])
-    console.log(dashData)
-    console.log(isUserAuthenticated)
+
+    const handleCourseClick = (cid) => {
+        navigate("/course/" + cid)
+
+    }
     if (!isUserAuthenticated()) {
         navigate("/sign-in")
     } else {
@@ -85,9 +88,11 @@ const Dashboard = () => {
 
                         {
                             dashData?.academicDetails?.courses.map((cr, i) => {
-                                console.log(cr)
+                                console.log(cr._id)
                                 return (
-                                    <Grid item xs={12} md={6} lg={4}>
+                                    <Grid item xs={12} md={6} lg={4}
+                                        onClick={() => { handleCourseClick(cr._id) }}
+                                    >
                                         <Box component={'div'} className='course'
                                             onClick={() => { onCourseClick(cr.courseCode) }}
                                         >
